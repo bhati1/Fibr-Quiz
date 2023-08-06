@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,71 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.flex{
+  display: flex;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.h-screen{
+  height: 100vh;
+}
+
+.w-screen{
+  width: 100vw;
+}
+.w-400{
+  width: 400px;
+}
+
+.card {
+  box-shadow: 0 0 1px gray;
+  }
+
+  .flex-col{
+    flex-direction: column;
+}
+.p-3{
+  padding: 30px;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.divider {
+  border-bottom: 1px solid rgb(182, 182, 182);
+  margin: 10px 0;
+  }
+
+
+button {
+  padding: 0px 25px;
+  border-radius: 2px;
+  height: 40px !important;
+}
+
+.underline{
+  text-decoration: underline !important;
+}
+
+.mt-2{
+  margin-top: 20px;
+}
+.gap-2{
+  gap: 20px;
+}
+
+.primary-contained-btn {
+  background: #282c34;
+  color: white;
 }

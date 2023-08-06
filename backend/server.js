@@ -9,6 +9,12 @@ const quizRoutes = require('./routes/quizRoutes')
 const participateRoutes = require('./routes/participateRoutes')
 app.use(express.json())
 
+// This is to test whether calls are right
+// app.use((req, res, next) => {
+//     console.log(req.path, req.method)
+//     next()
+// })
+
 // user routes
 app.use('/users', userRoutes)
 

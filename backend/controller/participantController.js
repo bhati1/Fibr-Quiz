@@ -43,16 +43,6 @@ const getReportforUser = async(req,res)=>{
 
 const getReportforQuiz = async(req, res)=>{
     try {
-        const quiz = await Quiz.findById(req.body.quizId);
-        const createdByUserId = quiz.createdByUserId
-        if(createdByUserId != req.body.userId)
-        {
-            res.status(401).send({
-                message: "Not authorised to see the reports for the quiz", createdByUserId,
-                data: createdByUserId,
-                success: false,
-            }); return;
-        }
         const reports = await Participant.find({ quizId: req.body.quizId })
             .populate("result")
             .populate("user")

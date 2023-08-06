@@ -16,6 +16,7 @@ const {
 
 
 const authMiddleware = require('../middlewares/authMiddleware')
+const quizAuthMiddleware = require('../middlewares/createdbyUserQuizMiddleware')
 
 router.post('/add', authMiddleware, addQuiz);
 
@@ -25,19 +26,19 @@ router.post('/get-quiz-by-id', authMiddleware, getQuiz)
 
 router.post('/get-quizes-by-user-id', authMiddleware, getQuizesbyUser)
 
-router.post('/edit-quiz-by-id', authMiddleware, editQuiz)
+router.post('/edit-quiz-by-id', authMiddleware, quizAuthMiddleware, editQuiz)
 
-router.post('/delete-quiz-by-id', authMiddleware, deleteQuiz)
+router.post('/delete-quiz-by-id', authMiddleware, quizAuthMiddleware, deleteQuiz)
 
-router.post('/add-questions-to-exam', authMiddleware, addQuestions)
+router.post('/add-questions-to-exam', authMiddleware, quizAuthMiddleware, addQuestions)
 
-router.post('/edit-questions-in-exam', authMiddleware, editQuestion)
+router.post('/edit-questions-in-exam', authMiddleware, quizAuthMiddleware, editQuestion)
 
-router.post('/delete-questions-in-exam', authMiddleware, deleteQuestion)
+router.post('/delete-questions-in-exam', authMiddleware, quizAuthMiddleware,deleteQuestion)
 
-router.post('/get-user-for-quiz-id', authMiddleware, getUserforQuiz)
+router.post('/get-user-for-quiz-id', authMiddleware, quizAuthMiddleware, getUserforQuiz)
 
-router.post('./get-user-for-question-id', authMiddleware, getUserforQuestion)
+router.post('./get-user-for-question-id', authMiddleware, quizAuthMiddleware, getUserforQuestion)
 
 
 module.exports = router

@@ -4,7 +4,6 @@ const {
     createUser,
     loginUser
     } = require('../controller/userController')
-const authMiddleware = require('../middlewares/authMiddleware')
 
 //  user registeration
 // POST

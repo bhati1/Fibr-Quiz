@@ -18,6 +18,7 @@ const addQuiz = async(req,res) => {
         await newQuiz.save();
         res.send({
             message: "quiz added successfully",
+            data: newQuiz,
             success: true,
         });
     } catch (error) {
@@ -89,6 +90,7 @@ const editQuiz = async(req,res)=>{
         await Quiz.findByIdAndUpdate(req.body.quizId, req.body);
         res.send({
             message: "quiz edited successfully",
+            data: req.body,
             success: true,
         });
     } catch (error) {
@@ -130,6 +132,7 @@ const addQuestions = async(req,res)=>{
         await quiz.save();
         res.send({
             message: "Question added successfully",
+            data: quiz.questions,
             success: true,
         });
     } catch (error) {

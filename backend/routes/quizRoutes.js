@@ -9,7 +9,9 @@ const {
     addQuestions,
     editQuestion,
     deleteQuestion,
-    getQuizesbyUser
+    getQuizesbyUser,
+    getUserforQuestion,
+    getUserforQuiz
 } = require('../controller/quizController')
 
 
@@ -32,6 +34,10 @@ router.post('/add-questions-to-exam', authMiddleware, addQuestions)
 router.post('/edit-questions-in-exam', authMiddleware, editQuestion)
 
 router.post('/delete-questions-in-exam', authMiddleware, deleteQuestion)
+
+router.post('/get-user-for-quiz-id', authMiddleware, getUserforQuiz)
+
+router.post('./get-user-for-question-id', authMiddleware, getUserforQuestion)
 
 
 module.exports = router

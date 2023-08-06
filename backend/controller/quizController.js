@@ -13,6 +13,7 @@ const addQuiz = async(req,res) => {
             .send({ message: "quiz already exists", success: false });
         }
         req.body.questions = [];
+        req.body.createdByUserId = userId;
         const newQuiz = new Quiz(req.body);
         await newQuiz.save();
         res.send({
@@ -119,6 +120,7 @@ const deleteQuiz = async(req,res)=>{
 const addQuestions = async(req,res)=>{
     try {
         // add question to Questions collection
+        req.body.createdByUserId = userId;
         const newQuestion = new Question(req.body);
         const question = await newQuestion.save();
     
@@ -181,6 +183,43 @@ const deleteQuestion = async(req,res)=>{
     }
 }
 
+const getUserforQuiz = async()=>{
+    try {
+        const userId = await Quiz.findById(req.body.quizId).populate("createdByUserId");
+        res.send({
+            message: "user fetched for quiz successfully",
+            data: userId,
+            success: true,
+        }); 
+        
+    } catch (error) {
+        res.status(500).send({
+            message: error.message,
+            data: error,
+            success: false,
+        });
+    }
+
+}
+const getUserforQuestion = async()=>{
+    try {
+        const userId = await Question.findById(req.body.quizId).populate("createdByUserId");
+        res.send({
+            message: "user fetched for question successfully",
+            data: userId,
+            success: true,
+        }); 
+        
+    } catch (error) {
+        res.status(500).send({
+            message: error.message,
+            data: error,
+            success: false,
+        });
+    }
+
+}
+
 module.exports = {
     addQuiz,
     getQuiz,
@@ -190,6 +229,8 @@ module.exports = {
     addQuestions,
     editQuestion,
     deleteQuestion,
-    getQuizesbyUser
+    getQuizesbyUser,
+    getUserforQuiz,
+    getUserforQuestion
 
 }

@@ -12,7 +12,7 @@ app.use(express.json())
 app.use('/users', userRoutes)
 
 // All CRUD operations to quiz & questions.
-app.use('/quiz', quizRoutes)
+app.use('/quizes', quizRoutes)
 
 app.listen(PORT, ()=>{
     console.log("Server Listening on port ", PORT)

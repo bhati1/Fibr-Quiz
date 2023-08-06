@@ -18,6 +18,10 @@ const questionSchema = new mongoose.Schema({
         ref: "quiz",
         required: true
     },
+    createdByUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    }
     }, 
     {
         timestamps: true,

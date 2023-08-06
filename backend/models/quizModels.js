@@ -10,10 +10,9 @@ const examSchema = new mongoose.Schema(
         type: Number,
         required: true,
     },
-    userId: {
+    createdByUserId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required: true,
+        ref: "user"
     },
     totalMarks: {
         type: Number,

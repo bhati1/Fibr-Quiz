@@ -11,6 +11,7 @@ function Register() {
         if(response.success)
         {
             message.success(response.message)
+            window.location.href = '/login'
         }
         else
         {

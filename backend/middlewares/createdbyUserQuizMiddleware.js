@@ -1,7 +1,8 @@
 const Quiz = require('../models/quizModels')
 module.exports = async(req,res,next)=>{
 
-    const quiz = await Quiz.findById(req.body.quizId);
+    try {
+        const quiz = await Quiz.findById(req.body.quizId);
     const createdByUserId = quiz.createdByUserId
     if(createdByUserId != req.body.userId)
     {
@@ -12,4 +13,15 @@ module.exports = async(req,res,next)=>{
         }); return;
     }
     next();
+        
+    } catch (error) {
+        res.status(500).send({
+            message: error.message,
+            data: error,
+            success: false,
+        }); return;
+        
+    }
+
+    
 }

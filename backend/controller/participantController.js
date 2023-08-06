@@ -25,7 +25,7 @@ const getReportforUser = async(req,res)=>{
     try {
         const reports = await Participant.find({ userId: req.body.userId })
             .populate("quiz")
-            .populate("user")
+            .populate("userId")
             .sort({ createdAt: -1 });
         res.send({
             message: "Attempts fetched successfully",
@@ -45,7 +45,7 @@ const getReportforQuiz = async(req, res)=>{
     try {
         const reports = await Participant.find({ quizId: req.body.quizId })
             .populate("result")
-            .populate("user")
+            .populate("userId")
             .sort({ createdAt: -1 });
         res.send({
             message: "Attempts fetched successfully",

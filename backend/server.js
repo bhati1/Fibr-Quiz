@@ -6,6 +6,7 @@ const dbConfig = require('./config/dbConfig')
 
 const userRoutes = require('./routes/userRoutes')
 const quizRoutes = require('./routes/quizRoutes')
+const participateRoutes = require('./routes/participateRoutes')
 app.use(express.json())
 
 // user routes
@@ -13,6 +14,9 @@ app.use('/users', userRoutes)
 
 // All CRUD operations to quiz & questions.
 app.use('/quizes', quizRoutes)
+
+// 
+app.use('/participate', participateRoutes)
 
 app.listen(PORT, ()=>{
     console.log("Server Listening on port ", PORT)

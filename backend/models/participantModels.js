@@ -12,7 +12,7 @@ const participantSchema = new mongoose.Schema({
         required: true
     },
     result: {
-        type: object,
+        type: Object,
         required: true,
     }
     }, 

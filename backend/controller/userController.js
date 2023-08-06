@@ -1,6 +1,7 @@
 const User = require('../models/userModels')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const { JWT_SECRET } = require('../constants')
 
 
 //  POST user
@@ -31,7 +32,7 @@ const createUser = async(req, res) => {
             data: error,
             success: false
 
-        })
+        }); return;
         
     }
 
@@ -60,7 +61,7 @@ const loginUser = async(req, res) => {
         }
     
         const token = jwt.sign(
-            { userId: user._id }, 'hello',
+            { userId: user._id }, JWT_SECRET,
             { expiresIn: "1d",});
     
         res.send({
@@ -73,7 +74,7 @@ const loginUser = async(req, res) => {
         message: error.message,
         data: error,
         success: false,
-    });
+    }); return;
     }    
 
 }

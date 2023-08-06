@@ -13,7 +13,7 @@ const addQuiz = async(req,res) => {
             .send({ message: "quiz already exists", success: false });
         }
         req.body.questions = [];
-        req.body.createdByUserId = userId;
+        req.body.createdByUserId = req.body.userId;
         const newQuiz = new Quiz(req.body);
         await newQuiz.save();
         res.send({
@@ -25,7 +25,7 @@ const addQuiz = async(req,res) => {
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
 }
 }
 
@@ -43,7 +43,7 @@ const getQuizes = async(req,res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
 }
 }
 
@@ -61,7 +61,7 @@ const getQuiz = async(req, res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     } 
 }
 
@@ -79,7 +79,7 @@ const getQuizesbyUser = async(req, res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     } 
 }
 
@@ -96,7 +96,7 @@ const editQuiz = async(req,res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     }
     
 }
@@ -113,14 +113,14 @@ const deleteQuiz = async(req,res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     }
 }
 
 const addQuestions = async(req,res)=>{
     try {
         // add question to Questions collection
-        req.body.createdByUserId = userId;
+        req.body.createdByUserId = req.body.userId;
         const newQuestion = new Question(req.body);
         const question = await newQuestion.save();
     
@@ -137,7 +137,7 @@ const addQuestions = async(req,res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     }
 }
 
@@ -154,7 +154,7 @@ const editQuestion = async(req,res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     }
 }
 
@@ -178,12 +178,12 @@ const deleteQuestion = async(req,res)=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     
     }
 }
 
-const getUserforQuiz = async()=>{
+const getUserforQuiz = async(req, res)=>{
     try {
         const userId = await Quiz.findById(req.body.quizId).populate("createdByUserId");
         res.send({
@@ -197,13 +197,13 @@ const getUserforQuiz = async()=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     }
 
 }
-const getUserforQuestion = async()=>{
+const getUserforQuestion = async(req, res)=>{
     try {
-        const userId = await Question.findById(req.body.quizId).populate("createdByUserId");
+        const userId = await Question.findById(req.body.questionId).populate("createdByUserId")
         res.send({
             message: "user fetched for question successfully",
             data: userId,
@@ -215,7 +215,7 @@ const getUserforQuestion = async()=>{
             message: error.message,
             data: error,
             success: false,
-        });
+        }); return;
     }
 
 }
